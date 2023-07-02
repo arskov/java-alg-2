@@ -47,7 +47,8 @@ public class ReverseVowelsStringTest {
         }
     }
 
-    @Test public void reverseVowelsStringTest() {
+    @Test 
+    public void reverseVowelsStringTest() {
         var solution = new Solution();
 
         Assert.assertEquals("holle", solution.reverseVowels("hello"));
