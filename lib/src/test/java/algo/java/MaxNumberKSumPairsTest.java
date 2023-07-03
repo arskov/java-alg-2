@@ -5,7 +5,7 @@ import java.util.Arrays;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class MaxNumberKSumPairs {
+public class MaxNumberKSumPairsTest {
     static class Solution {
         public int maxOperations(int[] nums, int k) {
             if (nums == null || nums.length == 0)
