@@ -5,6 +5,10 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static algo.java.ListNodeUtils.ListNode;
+import static algo.java.ListNodeUtils.listNodeFromList;
+import static algo.java.ListNodeUtils.listEquals;
+
 public class OddEvenLinkedListTest {
     static class Solution {
         public ListNode oddEvenList(ListNode head) {
@@ -40,53 +44,12 @@ public class OddEvenLinkedListTest {
         }
     }
 
-    static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-    }
-
-    static boolean equals(ListNode a, ListNode b) {
-        while (a != null) {
-            if (b == null || b.val != a.val)
-                return false;
-            a = a.next;
-            b = b.next;
-        }
-        return true;
-    }
-
-    static ListNode fromList(List<Integer> list) {
-        if (list == null || list.isEmpty())
-            return null;
-        var it = list.iterator();
-        ListNode head = new ListNode(it.next());
-        ListNode next = head;
-        while (it.hasNext()) {
-            var i = it.next();
-            next.next = new ListNode(i);
-            next = next.next;
-        }
-        return head;
-    }
-
     @Test
     public void oddEvenLinkedListTest() {
         var solution = new Solution();
-        var sample = fromList(List.of(1, 2, 3, 4, 5, 6, 7));
-        var expected = fromList(List.of(1, 3, 5, 7, 2, 4, 6));
-        Assert.assertTrue(equals(expected, solution.oddEvenList(sample)));
+        var sample = listNodeFromList(List.of(1, 2, 3, 4, 5, 6, 7));
+        var expected = listNodeFromList(List.of(1, 3, 5, 7, 2, 4, 6));
+        Assert.assertTrue(listEquals(expected, solution.oddEvenList(sample)));
     }
 
 }
