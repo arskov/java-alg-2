@@ -15,9 +15,9 @@ public class SubarraySumEqualsK {
             int count = 0;
             int sum = 0;
             var map = new HashMap<Integer, Integer>();
-            map.put(0, 1);
             for (int i = 0; i < nums.length; i++) {
                 sum += nums[i];
+                if (sum == k) count++;
                 if (map.containsKey(sum - k))
                     count += map.get(sum - k);
                 map.put(sum, map.getOrDefault(sum, 0) + 1);
@@ -25,15 +25,15 @@ public class SubarraySumEqualsK {
             return count;
         }
 
-        public int subarraySum(ArrayList<Integer> arr, int targetSum) {
+        public int subarraySum(ArrayList<Integer> arr, int k) {
             int sum = 0;
             int count = 0;
             var map = new HashMap<Integer, Integer>();
-            map.put(0, 1);
             for (int i = 0; i < arr.size(); i++) {
                 sum += arr.get(i);
-                if (map.containsKey(sum - targetSum))
-                    count += map.get(sum - targetSum);
+                if (sum == k) count++;
+                if (map.containsKey(sum - k))
+                    count += map.get(sum - k);
                 map.put(sum, map.getOrDefault(sum, 0) + 1);
             }
             return count;
