@@ -1,6 +1,8 @@
 package algo.java;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -22,6 +24,20 @@ public class SubarraySumEqualsK {
             }
             return count;
         }
+
+        public int subarraySum(ArrayList<Integer> arr, int targetSum) {
+            int sum = 0;
+            int count = 0;
+            var map = new HashMap<Integer, Integer>();
+            map.put(0, 1);
+            for (int i = 0; i < arr.size(); i++) {
+                sum += arr.get(i);
+                if (map.containsKey(sum - targetSum))
+                    count += map.get(sum - targetSum);
+                map.put(sum, map.getOrDefault(sum, 0) + 1);
+            }
+            return count;
+        }
     }
 
     @Test
@@ -29,5 +45,8 @@ public class SubarraySumEqualsK {
         var solution = new Solution();
         Assert.assertEquals(2, solution.subarraySum(new int[] { 1, 1, 1 }, 2));
         Assert.assertEquals(2, solution.subarraySum(new int[] { 1, 2, 3 }, 3));
+
+        Assert.assertEquals(2, solution.subarraySum(new ArrayList<>(List.of(1, 1, 1)), 2));
+        Assert.assertEquals(2, solution.subarraySum(new ArrayList<>(List.of(1, 2, 3)), 3));
     }
 }
