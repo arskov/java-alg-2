@@ -1,6 +1,8 @@
 package algo.java;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.List;
 
 public final class TreeNodeUtils {
     private TreeNodeUtils() {
@@ -55,6 +57,30 @@ public final class TreeNodeUtils {
                 }
             }
             return root;
+        }
+
+        private void dfs(TreeNode node, List<Integer> res) {
+            if (node == null) return;
+            dfs(node.left, res);
+            res.add(node.val);
+            dfs(node.right, res);
+        }
+
+        private List<Integer> toInOrderArray() {
+            var res = new ArrayList<Integer>();
+            dfs(this, res);
+            return res;
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            if (other instanceof TreeNode) {
+                var otherTree = (TreeNode) other;
+                var a = this.toInOrderArray();
+                var b = otherTree.toInOrderArray();
+                return a.equals(b);
+            }
+            return false;
         }
 
     }
